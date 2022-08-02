@@ -1,0 +1,25 @@
+api:
+  dashboard: true
+  insecure: true
+
+accessLog: {}
+
+log:
+  level: INFO
+
+entryPoints:
+  http:
+    address: ":80"
+  https:
+    address: ":443"
+
+http:
+  routers:
+    host:
+      entryPoints:
+        - http
+
+providers:
+  docker:
+    endpoint: "unix:///var/run/docker.sock"
+    exposedByDefault: false

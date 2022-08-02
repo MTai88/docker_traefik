@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  traefik:
+    image: traefik:latest
+    volumes:
+      - ./traefik.yml:/traefik.yml:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    ports:
+      - 80:80
+      - 443:443
+    restart: always
+    networks:
+      - default
+
+networks:
+  default:
+    external:
+      name: traefik-net
